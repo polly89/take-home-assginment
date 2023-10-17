@@ -9,6 +9,7 @@ import './App.css';
 
 export function App({ query }) {
 	const [restults, setResults] = useState([]);
+	const [selected, setSelected] = useState(null);
 
 	async function onSearchSubmit(query) {
 		try {
@@ -20,8 +21,9 @@ export function App({ query }) {
 		}
 	}
 
-	function handleSelection(e) {
+	function handleSelection(e, art) {
 		e.preventDefault();
+		setSelected(art);
 	}
 
 	function DisplayList() {
@@ -44,6 +46,7 @@ export function App({ query }) {
 			<h1>TCL Career Lab Art Finder</h1>
 			<SearchForm onSearchSubmit={onSearchSubmit} />
 			<DisplayList />
+			<ImageDetails art={selected} />
 			<Footer />
 		</div>
 	);
