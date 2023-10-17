@@ -10,6 +10,7 @@ import './App.css';
 export function App({ query }) {
 	const [restults, setResults] = useState([]);
 	const [selected, setSelected] = useState(null);
+	const [showDetailsPage, setShowDetailsPage] = useState(false);
 
 	async function onSearchSubmit(query) {
 		try {
@@ -24,6 +25,8 @@ export function App({ query }) {
 	function handleSelection(e, art) {
 		e.preventDefault();
 		setSelected(art);
+		setShowDetailsPage(true);
+		console.log('Click to open');
 	}
 
 	function DisplayList() {
@@ -46,7 +49,16 @@ export function App({ query }) {
 			<h1>TCL Career Lab Art Finder</h1>
 			<SearchForm onSearchSubmit={onSearchSubmit} />
 			<DisplayList />
-			<ImageDetails art={selected} />
+			{showDetailsPage && selected && (
+				<ImageDetails
+					art={selected}
+					onClose={() => {
+						setShowDetailsPage(false);
+						setSelected(null);
+						console.log('Closing details page');
+					}}
+				/>
+			)}
 			<Footer />
 		</div>
 	);
