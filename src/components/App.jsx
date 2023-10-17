@@ -30,6 +30,9 @@ export function App({ query }) {
 	}
 
 	function DisplayList() {
+		if (showDetailsPage) {
+			return null;
+		}
 		return (
 			<ul>
 				{restults.map((res) => (

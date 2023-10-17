@@ -1,4 +1,8 @@
 export function ImageDetails({ art, onClose }) {
+	if (!art) {
+		return null;
+	}
+
 	const { title, artist_title } = art;
 
 	return (
