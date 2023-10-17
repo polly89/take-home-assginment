@@ -19,13 +19,20 @@ export function App({ query }) {
 			console.log(error);
 		}
 	}
+
+	function handleSelection(e) {
+		e.preventDefault();
+	}
+
 	function DisplayList() {
 		return (
 			<ul>
 				{restults.map((res) => (
 					<li key={res.title}>
-						<h2>{res.title}</h2>
-						<p>Artist: {res.artist_title || 'Unknown'}</p>
+						<a href="/" onClick={(e) => handleSelection(e, res)}>
+							<h2>{res.title}</h2>
+							<p>Artist: {res.artist_title || 'Unknown'}</p>
+						</a>
 					</li>
 				))}
 			</ul>
