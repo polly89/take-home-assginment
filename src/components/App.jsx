@@ -16,7 +16,6 @@ export function App({ query }) {
 		try {
 			const res = await searchArtworks(query);
 			setResults(res.data);
-			console.log(res.data);
 		} catch (error) {
 			console.log(error);
 		}
@@ -26,7 +25,10 @@ export function App({ query }) {
 		e.preventDefault();
 		setSelected(art);
 		setShowDetailsPage(true);
-		console.log('Click to open');
+	}
+	function handleBack() {
+		setShowDetailsPage(false);
+		setSelected(null);
 	}
 
 	function DisplayList() {
@@ -53,14 +55,7 @@ export function App({ query }) {
 			{showDetailsPage ? null : <SearchForm onSearchSubmit={onSearchSubmit} />}
 			<DisplayList />
 			{showDetailsPage && selected && (
-				<ImageDetails
-					art={selected}
-					onClose={() => {
-						setShowDetailsPage(false);
-						setSelected(null);
-						console.log('Closing details page');
-					}}
-				/>
+				<ImageDetails art={selected} onClose={handleBack} />
 			)}
 			<Footer />
 		</div>
