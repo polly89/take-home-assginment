@@ -50,7 +50,7 @@ export function App({ query }) {
 	return (
 		<div className="App">
 			<h1>TCL Career Lab Art Finder</h1>
-			<SearchForm onSearchSubmit={onSearchSubmit} />
+			{showDetailsPage ? null : <SearchForm onSearchSubmit={onSearchSubmit} />}
 			<DisplayList />
 			{showDetailsPage && selected && (
 				<ImageDetails
