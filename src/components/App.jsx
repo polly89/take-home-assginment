@@ -6,17 +6,17 @@ import { Footer } from './Footer';
 
 import './App.css';
 
-export function App() {
-	function onSearchSubmit(query) {
-		// Search for the users's query.
-		// TODO: render the results, instead of logging them to the console.
-		// NOTE: `searchArtworks` currently returns local data, so that we
-		// don't make too many requests to the API! Once we've built out
-		// our UI, we need to make real requests!
-		// @see: ./src/api.js
-		searchArtworks(query).then((json) => {
-			console.log(json);
-		});
+export function App({ query }) {
+	const [restults, setResults] = useState([]);
+
+	async function onSearchSubmit(query) {
+		try {
+			const res = await searchArtworks(query);
+			setResults(res.data);
+			console.log(res.data);
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	return (
